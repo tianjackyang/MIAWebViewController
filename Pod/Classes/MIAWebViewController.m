@@ -1,18 +1,18 @@
 //
-//  RxWebViewController.m
-//  RxWebViewController
+//  MIAWebViewController.m
+//  MIAWebViewController
 //
 //  Created by roxasora on 15/10/23.
 //  Copyright © 2015年 roxasora. All rights reserved.
 //
 
-#import "RxWebViewController.h"
+#import "MIAWebViewController.h"
 #import "NJKWebViewProgress.h"
 #import "NJKWebViewProgressView.h"
 
 #define boundsWidth self.view.bounds.size.width
 #define boundsHeight self.view.bounds.size.height
-@interface RxWebViewController ()<UIWebViewDelegate,UINavigationControllerDelegate,UINavigationBarDelegate,NJKWebViewProgressDelegate>
+@interface MIAWebViewController ()<UIWebViewDelegate,UINavigationControllerDelegate,UINavigationBarDelegate,NJKWebViewProgressDelegate>
 
 @property (nonatomic)UIBarButtonItem* customBackBarItem;
 @property (nonatomic)UIBarButtonItem* closeButtonItem;
@@ -52,7 +52,7 @@
 
 @end
 
-@implementation RxWebViewController
+@implementation MIAWebViewController
 
 -(UIStatusBarStyle) preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
@@ -330,7 +330,6 @@
 
 -(void)setProgressViewColor:(UIColor *)progressViewColor{
     _progressViewColor = progressViewColor;
-    self.progressView.progressColor = progressViewColor;
 }
 
 -(UIWebView*)webView{
@@ -416,7 +415,6 @@
 //        CGRect barFrame = CGRectMake(0, navigaitonBarBounds.size.height - progressBarHeight-0.5, navigaitonBarBounds.size.width, progressBarHeight);
         CGRect barFrame = CGRectMake(0, navigaitonBarBounds.size.height, navigaitonBarBounds.size.width, progressBarHeight);
         _progressView = [[NJKWebViewProgressView alloc] initWithFrame:barFrame];
-        _progressView.progressColor = self.progressViewColor;
         _progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     }
     return _progressView;

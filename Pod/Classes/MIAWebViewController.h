@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RxWebViewController : UIViewController
+@interface MIAWebViewController : UIViewController
 
 /**
  *  origin url

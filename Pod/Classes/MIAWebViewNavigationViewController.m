@@ -1,15 +1,15 @@
 //
-//  RxWebViewNavigationViewController.m
+//  MIAWebViewNavigationViewController.m
 //  RxWebViewController
 //
 //  Created by roxasora on 15/10/23.
 //  Copyright © 2015年 roxasora. All rights reserved.
 //
 
-#import "RxWebViewNavigationViewController.h"
-#import "RxWebViewController.h"
+#import "MIAWebViewNavigationViewController.h"
+#import "MIAWebViewController.h"
 
-@interface RxWebViewNavigationViewController ()<UINavigationBarDelegate>
+@interface MIAWebViewNavigationViewController ()<UINavigationBarDelegate>
 
 /**
  *  由于 popViewController 会触发 shouldPopItems，因此用该布尔值记录是否应该正确 popItems
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation RxWebViewNavigationViewController
+@implementation MIAWebViewNavigationViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -54,8 +54,8 @@
     }
     
     //! 如果不应该 pop，说明是点击了导航栏的返回，这时候则要做出判断区分是不是在 webview 中
-    if ([self.topViewController isKindOfClass:[RxWebViewController class]]) {
-        RxWebViewController* webVC = (RxWebViewController*)self.viewControllers.lastObject;
+    if ([self.topViewController isKindOfClass:[MIAWebViewController class]]) {
+        MIAWebViewController* webVC = (MIAWebViewController*)self.viewControllers.lastObject;
         if (webVC.webView.canGoBack) {
             [webVC.webView goBack];
             
