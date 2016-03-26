@@ -85,7 +85,8 @@
     // Do any additional setup after loading the view.
 }
 
--(void)viewDidDisappear:(BOOL)animated{
+//-(void)viewDidDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [self.progressView removeFromSuperview];
     self.webView.delegate = nil;
