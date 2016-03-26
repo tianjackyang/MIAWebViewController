@@ -54,8 +54,8 @@
     //}
     
     //! 如果不应该 pop，说明是点击了导航栏的返回，这时候则要做出判断区分是不是在 webview 中
-    if ([self.topViewController isKindOfClass:[FIWebViewController class]]) {
-        FIWebViewController* webVC = (FIWebViewController*)self.viewControllers.lastObject;
+    if ([self.topViewController isKindOfClass:[MIAWebViewController class]]) {
+        MIAWebViewController* webVC = (MIAWebViewController*)self.viewControllers.lastObject;
         if (webVC.webView.canGoBack) {
             [webVC.webView goBack];
             
