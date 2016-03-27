@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MIAWebProtocol.h"
 
 @interface MIAWebViewController : UIViewController
+
+@property (nonatomic, weak) id<MIAWebProtocol> delegate;
 
 /**
  *  origin url

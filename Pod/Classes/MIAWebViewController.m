@@ -63,7 +63,8 @@
     self = [super init];
     if (self) {
         self.url = url;
-        _progressViewColor = [UIColor colorWithRed:119.0/255 green:228.0/255 blue:115.0/255 alpha:1];
+        //_progressViewColor = [UIColor colorWithRed:119.0/255 green:228.0/255 blue:115.0/255 alpha:1];
+        _progressViewColor = [UIColor clearColor];
     }
     return self;
 }
@@ -79,14 +80,25 @@
     
     self.webView.delegate = self.progressProxy;
     [self.view addSubview:self.webView];
-    [self.webView loadRequest:[NSURLRequest requestWithURL:self.url]];
+    //[self.webView loadRequest:[NSURLRequest requestWithURL:self.url]];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        if ([self.delegate respondsToSelector:@selector(ModifyWebViewRequestHeader:)]) {
+            [self.webView loadRequest:[self.delegate ModifyWebViewRequestHeader:self.url]];
+        }
+        else {
+            [self.webView loadRequest:[NSURLRequest requestWithURL:self.url]];
+        }
+    });
     
     [self.navigationController.navigationBar addSubview:self.progressView];
     // Do any additional setup after loading the view.
+    
+    [self.progressView.progressBarView setBackgroundColor:_progressViewColor];
 }
 
-//-(void)viewDidDisappear:(BOOL)animated{
-- (void)viewWillDisappear:(BOOL)animated {
+-(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [self.progressView removeFromSuperview];
     self.webView.delegate = nil;
@@ -320,6 +332,9 @@
 
 -(void)webViewProgress:(NJKWebViewProgress *)webViewProgress updateProgress:(float)progress
 {
+    self.progressView.progressBarView.backgroundColor = [UIColor colorWithRed:((float)((0x7DC486 & 0xFF0000) >> 16))/255.0 \
+                                         green:((float)((0x7DC486 & 0xFF00) >> 8))/255.0 \
+                                          blue:((float)(0x7DC486 & 0xFF))/255.0 alpha:1.0];
     [self.progressView setProgress:progress animated:NO];
 }
 
