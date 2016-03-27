@@ -11,7 +11,7 @@
 
 @interface MIAWebViewController : UIViewController
 
-@property (nonatomic, weak) id<MIAWebProtocol> delegate;
+@property (nonatomic, strong) id<MIAWebProtocol> delegate;
 
 /**
  *  origin url
