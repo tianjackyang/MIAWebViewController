@@ -11,11 +11,6 @@
 
 @interface MIAWebViewNavigationViewController ()<UINavigationBarDelegate>
 
-/**
- *  由于 popViewController 会触发 shouldPopItems，因此用该布尔值记录是否应该正确 popItems
- */
-@property BOOL shouldPopItemAfterPopViewController;
-
 @end
 
 @implementation MIAWebViewNavigationViewController
@@ -32,17 +27,17 @@
 }
 
 -(UIViewController*)popViewControllerAnimated:(BOOL)animated{
-    self.shouldPopItemAfterPopViewController = YES;
+    //self.shouldPopItemAfterPopViewController = YES;
     return [super popViewControllerAnimated:animated];
 }
 
 -(NSArray<UIViewController *> *)popToViewController:(UIViewController *)viewController animated:(BOOL)animated{
-    self.shouldPopItemAfterPopViewController = YES;
+    //self.shouldPopItemAfterPopViewController = YES;
     return [super popToViewController:viewController animated:animated];
 }
 
 -(NSArray<UIViewController *> *)popToRootViewControllerAnimated:(BOOL)animated{
-    self.shouldPopItemAfterPopViewController = YES;
+    //self.shouldPopItemAfterPopViewController = YES;
     return [super popToRootViewControllerAnimated:animated];
 }
 -(BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item{
@@ -65,11 +60,11 @@
             return NO;
         }else{
             [self popViewControllerAnimated:YES];
-            return NO;
+            return YES;
         }
     }else{
         [self popViewControllerAnimated:YES];
-        return NO;
+        return YES;
     }
 }
 
