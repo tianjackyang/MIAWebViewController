@@ -8,6 +8,7 @@
 
 #import "MIAWebViewNavigationViewController.h"
 #import "MIAWebViewController.h"
+#import "MIAWKWebViewController.h"
 
 @interface MIAWebViewNavigationViewController ()<UINavigationBarDelegate>
 
@@ -62,7 +63,22 @@
             [self popViewControllerAnimated:YES];
             return YES;
         }
-    }else{
+    }
+    else if ([self.topViewController isKindOfClass:[MIAWKWebViewController class]]) {
+        MIAWKWebViewController* webVC = (MIAWKWebViewController*)self.viewControllers.lastObject;
+        if (webVC.webView.canGoBack) {
+            [webVC.webView goBack];
+            
+            //!make sure the back indicator view alpha back to 1
+            self.shouldPopItemAfterPopViewController = NO;
+            [[self.navigationBar subviews] lastObject].alpha = 1;
+            return NO;
+        }else{
+            [self popViewControllerAnimated:YES];
+            return YES;
+        }
+    }
+    else{
         [self popViewControllerAnimated:YES];
         return YES;
     }
