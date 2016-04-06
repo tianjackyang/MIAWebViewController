@@ -14,6 +14,8 @@
 #define boundsWidth self.view.bounds.size.width
 #define boundsHeight self.view.bounds.size.height
 @interface MIAWKWebViewController ()<UINavigationControllerDelegate,UINavigationBarDelegate, WKNavigationDelegate, WKUIDelegate/*, WKScriptMessageHandler*/>
+
+
 @property (nonatomic,assign) BOOL isShowUrlTitle;
 @property (nonatomic,strong) UILabel *urlTipLabel;
 @property (nonatomic,strong) UIProgressView *progressView;
